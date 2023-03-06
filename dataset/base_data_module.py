@@ -1,6 +1,5 @@
 import pytorch_lightning as pl
-import torch
-from torch.utils.data import Dataset, DataLoader, DataM
+from torch.utils.data import DataLoader
 import argparse
 
 BLOCK_SIZE = 256
@@ -16,8 +15,8 @@ class BaseDataModule(pl.LightningDataModule):
         self.batch_size = self.args.get("batch_size", BATCH_SIZE)
         self.num_workers = self.args.get("num_workers", NUM_WORKERS)
         self.train_val_split = self.args.get("train_val_split", TRAIN_VAL_SPLIT)
-        self.block_sixze = self.args.get("block_size", BLOCK_SIZE)
-        self.block_sixze = self.args["data_dir"]
+        self.block_size = self.args.get("block_size", BLOCK_SIZE)
+        self.data_dir = self.args["data_dir"]
         self.on_gpu = isinstance(self.args.get("gpus", None), (str, int))
 
         self.data_train = None
